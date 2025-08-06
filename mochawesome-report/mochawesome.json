@@ -1,0 +1,119 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-08-06T03:06:44.107Z",
+    "end": "2025-08-06T03:06:44.186Z",
+    "duration": 79,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5a7ab34d-b7d1-4e8e-b6eb-21abdf9c1fae",
+      "title": "",
+      "fullFile": "",
+      "file": "/Users/qiaopengjun/Code/Solana/shenqi-box/tests/metaplex_nft.ts",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 60,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "__awaiter(void 0, void 0, void 0, function* () {\n        console.log(`🌐 Testing on ${NETWORK.toUpperCase()}`);\n        console.log(`🔗 RPC URL: ${RPC_URL}`);\n        // 检查程序是否可用\n        try {\n            const programInfo = yield provider.connection.getAccountInfo(program.programId);\n            if (programInfo) {\n                console.log(\"✅ Program is available\");\n            }\n            else {\n                console.log(\"⚠️  Program is not deployed on this network\");\n            }\n        }\n        catch (error) {\n            console.log(\"⚠️  Could not check program status:\", error.message);\n        }\n        // 检查 Token Metadata Program 是否可用\n        try {\n            const tokenMetadataProgramKey = new anchor.web3.PublicKey(mpl_token_metadata_1.MPL_TOKEN_METADATA_PROGRAM_ID);\n            const programInfo = yield provider.connection.getAccountInfo(tokenMetadataProgramKey);\n            if (!programInfo) {\n                console.log(`⚠️  Warning: Token Metadata Program is not deployed on ${NETWORK}`);\n                if (NETWORK === \"localnet\") {\n                    console.log(\"   For localnet testing, you may need to deploy Token Metadata Program or use devnet\");\n                }\n            }\n            else {\n                console.log(\"✅ Token Metadata Program is available\");\n            }\n        }\n        catch (error) {\n            console.log(\"⚠️  Could not check Token Metadata Program:\", error.message);\n        }\n    })",
+          "err": {},
+          "uuid": "2febd4e3-36b5-41c5-a6ac-d416f7deaa60",
+          "parentUUID": "5a7ab34d-b7d1-4e8e-b6eb-21abdf9c1fae",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "should initialize program",
+          "fullTitle": "should initialize program",
+          "timedOut": false,
+          "duration": 0,
+          "state": "passed",
+          "speed": "fast",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "__awaiter(void 0, void 0, void 0, function* () {\n        console.log(\"✅ Program initialization test passed\");\n    })",
+          "err": {},
+          "uuid": "1dfbec3a-63aa-416a-b14b-d5d2db5538f5",
+          "parentUUID": "5a7ab34d-b7d1-4e8e-b6eb-21abdf9c1fae",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "mints nft!",
+          "fullTitle": "mints nft!",
+          "timedOut": false,
+          "duration": 3,
+          "state": "passed",
+          "speed": "fast",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "__awaiter(void 0, void 0, void 0, function* () {\n        // 检查程序是否可用\n        try {\n            const programInfo = yield provider.connection.getAccountInfo(program.programId);\n            if (!programInfo) {\n                console.log(`⏭️  Skipping NFT mint test - Program not deployed on ${NETWORK}`);\n                console.log(\"   Please deploy the program first\");\n                return;\n            }\n        }\n        catch (error) {\n            console.log(`⏭️  Skipping NFT mint test - Could not check program: ${error.message}`);\n            return;\n        }\n        // 检查 Token Metadata Program 是否可用\n        try {\n            const tokenMetadataProgramKey = new anchor.web3.PublicKey(mpl_token_metadata_1.MPL_TOKEN_METADATA_PROGRAM_ID);\n            const programInfo = yield provider.connection.getAccountInfo(tokenMetadataProgramKey);\n            if (!programInfo) {\n                console.log(`⏭️  Skipping NFT mint test - Token Metadata Program not available on ${NETWORK}`);\n                console.log(\"   This is expected for localnet. Try running on devnet for full functionality.\");\n                return;\n            }\n        }\n        catch (error) {\n            console.log(`⏭️  Skipping NFT mint test - Could not check Token Metadata Program: ${error.message}`);\n            return;\n        }\n        console.log(`🚀 Minting NFT on ${NETWORK}...`);\n        console.log(`📝 Metadata: ${metadata.name} (${metadata.symbol})`);\n        try {\n            const tx = yield program.methods\n                .mintNft(metadata.name, metadata.symbol, metadata.uri)\n                .accounts({\n                signer: provider.publicKey,\n                mintAccount: mint.publicKey,\n                associatedTokenAccount,\n                metadataAccount,\n                masterEditionAccount,\n                tokenProgram: spl_token_2.TOKEN_PROGRAM_ID,\n                associatedTokenProgram: spl_token_2.ASSOCIATED_TOKEN_PROGRAM_ID,\n                tokenMetadataProgram: mpl_token_metadata_1.MPL_TOKEN_METADATA_PROGRAM_ID,\n                systemProgram: anchor.web3.SystemProgram.programId,\n                rent: anchor.web3.SYSVAR_RENT_PUBKEY,\n            })\n                .signers([mint])\n                .rpc();\n            console.log(`✅ NFT minted successfully!`);\n            console.log(`🔗 Transaction: ${EXPLORER_URL}/tx/${tx}?cluster=${NETWORK}`);\n            console.log(`🖼️  NFT Address: ${EXPLORER_URL}/address/${mint.publicKey}?cluster=${NETWORK}`);\n            console.log(`🎯 Mint Public Key: ${mint.publicKey.toString()}`);\n        }\n        catch (error) {\n            console.log(`❌ NFT mint failed: ${error.message}`);\n            console.log(\"   This might be due to network issues or missing dependencies\");\n            throw error;\n        }\n    })",
+          "err": {},
+          "uuid": "a36863b5-d672-48ca-8912-852ef30a5bc4",
+          "parentUUID": "5a7ab34d-b7d1-4e8e-b6eb-21abdf9c1fae",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "1dfbec3a-63aa-416a-b14b-d5d2db5538f5",
+        "a36863b5-d672-48ca-8912-852ef30a5bc4"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 3,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 1000000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.2.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

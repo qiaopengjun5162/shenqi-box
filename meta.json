@@ -1,0 +1,33 @@
+{
+  "name": "ShenQiBox",
+  "symbol": "SQB",
+  "description": "ShenQiBox NFT - 神奇盒子",
+  "image": "https://avatars.githubusercontent.com/u/124650229?s=400&u=f00995a8f30ee3cf61ab6524aa0c77722dad76cc&v=4",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Magic Box"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Power",
+      "value": "100"
+    },
+    {
+      "trait_type": "Element",
+      "value": "Mystic"
+    }
+  ],
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://avatars.githubusercontent.com/u/124650229?s=400&u=f00995a8f30ee3cf61ab6524aa0c77722dad76cc&v=4",
+        "type": "image/jpeg"
+      }
+    ]
+  }
+}
