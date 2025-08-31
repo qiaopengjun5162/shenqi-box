@@ -8,6 +8,7 @@ skip-lint = false
 [programs.devnet]
 metaplex_nft = "HNyPqG6w1NQTx4gEB4eHGFJNDMQQJibc8LQwJqJ5awoo"
 shenqi_box = "2ZgjDLphMVoLT48YCk2ZvAsHpdwkqtkhyCWsjR1Gda7x"
+token_2022_nft = "2PLQsLqv33ZAtLh4WA7BCnnXTNsrZEY3QBxhVDx8JZTe"
 
 [programs.localnet]
 metaplex_nft = "HNyPqG6w1NQTx4gEB4eHGFJNDMQQJibc8LQwJqJ5awoo"
@@ -17,6 +18,7 @@ token_2022_nft = "2PLQsLqv33ZAtLh4WA7BCnnXTNsrZEY3QBxhVDx8JZTe"
 [programs.mainnet]
 metaplex_nft = "HNyPqG6w1NQTx4gEB4eHGFJNDMQQJibc8LQwJqJ5awoo"
 shenqi_box = "2ZgjDLphMVoLT48YCk2ZvAsHpdwkqtkhyCWsjR1Gda7x"
+token_2022_nft = "2PLQsLqv33ZAtLh4WA7BCnnXTNsrZEY3QBxhVDx8JZTe"
 
 [registry]
 url = "https://api.apr.dev"

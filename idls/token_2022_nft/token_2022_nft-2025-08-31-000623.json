@@ -1,0 +1,137 @@
+{
+  "address": "2PLQsLqv33ZAtLh4WA7BCnnXTNsrZEY3QBxhVDx8JZTe",
+  "metadata": {
+    "name": "token_2022_nft",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "mint_nft",
+      "docs": ["创建、初始化、铸造并锁定一个 Token-2022 NFT"],
+      "discriminator": [211, 57, 6, 167, 15, 219, 35, 251],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "nft_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110, 102, 116, 95, 97, 117, 116, 104, 111, 114, 105, 116, 121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "NftAuthority",
+      "discriminator": [194, 127, 219, 16, 219, 18, 250, 12]
+    }
+  ],
+  "events": [
+    {
+      "name": "NftMetadataUpdated",
+      "discriminator": [50, 210, 53, 234, 245, 135, 73, 13]
+    },
+    {
+      "name": "NftMinted",
+      "discriminator": [175, 29, 105, 0, 195, 2, 245, 38]
+    }
+  ],
+  "types": [
+    {
+      "name": "NftAuthority",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "NftMetadataUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nft_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "field",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NftMinted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nft_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "recipient",
+            "type": "pubkey"
+          }
+        ]
+      }
+    }
+  ]
+}
